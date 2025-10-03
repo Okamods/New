@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Mod Downloads</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+  #progressBar { transition: width 100ms linear; }
+  #verificationCircle { transition: stroke-dashoffset 50ms linear; }
+  .fade-slide { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-slide.show { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body class="bg-gradient-to-br from-gray-100 to-gray-200 min-h-screen flex flex-col transition-colors duration-500">
+
+<header class="bg-gradient-to-r from-gray-700 to-gray-900 text-white py-10 md:py-12 shadow-lg text-center">
+  <h1 class="text-3xl md:text-5xl font-bold">🎮 Okamod Download Game Mods!</h1>
+  <p class="mt-3 md:mt-4 text-md md:text-lg">Select your game and get the latest mod versions!</p>
+</header>
+
+<section id="gameGrid" class="py-8 px-4 sm:px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto"></section>
+
+<!-- Reviews Carousel -->
+<section id="reviews" class="bg-white shadow-inner py-8 sm:py-10 px-4 sm:px-6 mt-10">
+  <h2 class="text-xl sm:text-2xl font-bold text-center text-gray-800 mb-4 sm:mb-6">Player Reviews 💬</h2>
+  <div class="relative max-w-xl sm:max-w-3xl mx-auto overflow-hidden">
+    <div id="reviewSlider" class="flex transition-transform duration-700 ease-in-out">
+      <div class="min-w-full p-4 sm:p-6 text-center">
+        <img src="https://i.pravatar.cc/100?img=12" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full mb-2 sm:mb-3">
+        <h3 class="font-bold text-gray-800 text-sm sm:text-base">Alice</h3>
+        <p class="text-yellow-500 mb-1 sm:mb-2 text-sm">⭐⭐⭐⭐⭐</p>
+        <p class="text-gray-600 text-xs sm:text-sm">Amazing mods! Made the game so much fun 🎉.</p>
+      </div>
+      <div class="min-w-full p-4 sm:p-6 text-center">
+        <img src="https://i.pravatar.cc/100?img=33" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full mb-2 sm:mb-3">
+        <h3 class="font-bold text-gray-800 text-sm sm:text-base">Mark</h3>
+        <p class="text-yellow-500 mb-1 sm:mb-2 text-sm">⭐⭐⭐⭐⭐</p>
+        <p class="text-gray-600 text-xs sm:text-sm">Easy to install and works perfectly 👌.</p>
+      </div>
+      <div class="min-w-full p-4 sm:p-6 text-center">
+        <img src="https://i.pravatar.cc/100?img=45" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto rounded-full mb-2 sm:mb-3">
+        <h3 class="font-bold text-gray-800 text-sm sm:text-base">Sophia</h3>
+        <p class="text-yellow-500 mb-1 sm:mb-2 text-sm">⭐⭐⭐⭐⭐</p>
+        <p class="text-gray-600 text-xs sm:text-sm">Loved it! Gameplay feels completely upgraded 🚀.</p>
+      </div>
+    </div>
+    <button onclick="prevReview()" class="absolute left-1 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">‹</button>
+    <button onclick="nextReview()" class="absolute right-1 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full">›</button>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section id="faq" class="py-10 px-4 sm:px-6 md:px-10 max-w-4xl mx-auto">
+  <h2 class="text-xl font-bold text-gray-800 mb-6 text-center">Frequently Asked Questions ❓</h2>
+  <div class="space-y-4">
+    <div class="border rounded-lg overflow-hidden">
+      <button class="faq-question w-full text-left px-4 py-3 bg-gray-100 hover:bg-gray-200 transition flex justify-between items-center">
+        <span>Is this really free?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer px-4 py-3 hidden text-gray-700 text-sm">
+        Yes! The game is completely free to play. You can enjoy all the fun without paying a dime. Some offers can help you unlock rewards faster and support us, but they’re totally optional.
+      </div>
+    </div>
+    <div class="border rounded-lg overflow-hidden">
+      <button class="faq-question w-full text-left px-4 py-3 bg-gray-100 hover:bg-gray-200 transition flex justify-between items-center">
+        <span>How long do the offers take?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer px-4 py-3 hidden text-gray-700 text-sm">
+        Most offers are quick sometimes under a minute! Just follow the instructions, and you’ll be done in no time.
+      </div>
+    </div>
+    <div class="border rounded-lg overflow-hidden">
+      <button class="faq-question w-full text-left px-4 py-3 bg-gray-100 hover:bg-gray-200 transition flex justify-between items-center">
+        <span>Do I need to root or jailbreak my device?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer px-4 py-3 hidden text-gray-700 text-sm">
+        Nope! Our game works perfectly on Android 8.0+ and iOS 12+ no tricky tweaks needed. Just install and play!
+      </div>
+    </div>
+    <div class="border rounded-lg overflow-hidden">
+      <button class="faq-question w-full text-left px-4 py-3 bg-gray-100 hover:bg-gray-200 transition flex justify-between items-center">
+        <span>Is multiplayer supported?</span>
+        <span class="faq-toggle">+</span>
+      </button>
+      <div class="faq-answer px-4 py-3 hidden text-gray-700 text-sm">
+        Absolutely! You can play online with friends or anyone else, even across Android and iOS. Just make sure you have an internet connection, and you’re ready to go.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Popups -->
+
+<!-- Popup1: Download Simulation -->
+<div id="popup1" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 text-center">
+    <button onclick="closeAllPopups()" class="mb-2 sm:mb-4 px-3 py-1 sm:px-4 sm:py-2 bg-red-600 text-white rounded-lg font-medium">✖ Close</button>
+    <h2 class="text-xl sm:text-2xl font-bold text-white bg-red-600 py-1 sm:py-2 rounded-lg">Preparing Download</h2>
+    <div class="mt-4 sm:mt-6 flex justify-center">
+      <i data-lucide="search" class="w-12 h-12 sm:w-16 sm:h-16 text-gray-700"></i>
+    </div>
+    <p class="mt-2 sm:mt-4 text-gray-600">Searching for available download source...</p>
+    <div class="relative w-full bg-gray-200 rounded-full h-5 sm:h-6 mt-4 sm:mt-6 overflow-hidden">
+      <div id="progressBar" class="bg-red-600 h-5 sm:h-6 rounded-full w-0 relative"></div>
+      <p id="fileInfo" class="absolute left-0 top-0 h-5 sm:h-6 flex items-center pl-2 font-bold text-white text-xs sm:text-sm"></p>
+    </div>
+    <p id="downloadSpeed" class="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-600"></p>
+  </div>
+</div>
+
+<!-- Popup2: Verification -->
+<div id="popup2" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 text-center">
+    <button onclick="closeAllPopups()" class="mb-2 sm:mb-4 px-3 py-1 sm:px-4 sm:py-2 bg-red-600 text-white rounded-lg font-medium">✖ Close</button>
+    <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Verification</h2>
+    <div class="mt-4 sm:mt-6 flex justify-center">
+      <svg class="w-24 h-24 sm:w-32 sm:h-32" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" stroke="#E5E7EB" stroke-width="10" fill="none"/>
+        <circle id="verificationCircle" cx="50" cy="50" r="45" stroke="#111827" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743" transform="rotate(-90 50 50)"/>
+        <text id="verificationTime" x="50" y="55" text-anchor="middle" font-size="16" fill="#111827" font-weight="bold">3</text>
+      </svg>
+    </div>
+    <p class="mt-2 sm:mt-4 text-black font-medium">Verifying your device...</p>
+    <p class="mt-1 sm:mt-2 text-gray-600 text-xs sm:text-sm">Please wait while we check your device compatibility...</p>
+  </div>
+</div>
+
+<!-- Popup3: Verification Failed -->
+<div id="popup3" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 text-center">
+    <button onclick="closeAllPopups()" class="mb-2 sm:mb-4 px-3 py-1 sm:px-4 sm:py-2 bg-red-600 text-white rounded-lg font-medium">✖ Close</button>
+    <h2 class="text-xl sm:text-2xl font-bold text-red-600">Verification Failed</h2>
+    <div class="mt-4 sm:mt-6 flex justify-center">
+      <i data-lucide="alert-circle" class="w-12 h-12 sm:w-16 sm:h-16 text-red-600"></i>
+    </div>
+    <p class="mt-2 sm:mt-4 text-gray-700 text-sm sm:text-base font-bold leading-snug">
+      Automatic verification failed.<br>
+      Please complete the manual verification to continue.
+    </p>
+    <button id="manualBtn" class="mt-4 sm:mt-6 px-4 sm:px-6 py-2 sm:py-3 bg-red-600 text-white rounded-xl font-semibold text-xs sm:text-sm">Complete Manual Verification</button>
+  </div>
+</div>
+
+<!-- Popup4: Manual Verification -->
+<div id="popup4" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 text-center">
+    <button onclick="closeAllPopups()" class="mb-2 sm:mb-4 px-3 py-1 sm:px-4 sm:py-2 bg-red-600 text-white rounded-lg font-medium">✖ Close</button>
+    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Manual Verification</h2>
+
+    <!-- Steps -->
+    <div class="flex items-start mb-3">
+      <i data-lucide="mouse-pointer" class="w-6 h-6 text-blue-600 mt-1"></i>
+      <div class="ml-2 text-left">
+        <p class="font-semibold">Step 1:</p>
+        <p>Click "Download Mod" to start the process.</p>
+      </div>
+    </div>
+    <div class="flex items-start mb-3">
+      <i data-lucide="check-square" class="w-6 h-6 text-green-600 mt-1"></i>
+      <div class="ml-2 text-left">
+        <p class="font-semibold">Step 2:</p>
+        <p>Complete a quick task or survey to validate your download.</p>
+      </div>
+    </div>
+    <div class="flex items-start mb-4">
+      <i data-lucide="gamepad" class="w-6 h-6 text-purple-600 mt-1"></i>
+      <div class="ml-2 text-left">
+        <p class="font-semibold">Step 3:</p>
+        <p id="manualGameStep" class="font-medium"></p>
+      </div>
+    </div>
+
+    <!-- Download Button -->
+    <button id="manualDownloadBtn" class="mb-3 w-full py-2 bg-gradient-to-r from-red-500 to-purple-600 text-white rounded-lg font-bold shadow hover:scale-105 transition text-sm">
+      ⬇ Download Mod
+    </button>
+
+    <!-- Countdown -->
+    <div class="flex justify-center items-center space-x-2">
+      <i data-lucide="clock" class="w-6 h-6 text-red-600"></i>
+      <p id="manualCountdown" class="text-red-600 font-bold text-lg">05:00</p>
+    </div>
+    <p class="mt-2 text-red-600 text-sm font-medium">Hurry! Link will expire soon!</p>
+  </div>
+</div>
+
+<!-- Popup5: Iframe -->
+<div id="popup5" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
+  <div class="relative bg-white rounded-2xl shadow-2xl w-[100%] h-[100%] flex flex-col">
+    <div class="flex justify-between items-center bg-red-600 text-white rounded-t-2xl px-4 py-2">
+      <h2 class="font-bold text-lg">Hurry! Link will expire soon!</h2>
+      <div class="flex items-center space-x-4">
+        <span id="iframeCountdown" class="font-bold text-lg">05:00</span>
+        <button onclick="closeIframePopup()" class="px-3 py-1 bg-red-800 rounded-lg text-white font-medium">✖ Close</button>
+      </div>
+    </div>
+    <iframe id="manualIframe" src="" class="flex-grow w-full border-none"></iframe>
+  </div>
+</div>
+
+<footer class="bg-gradient-to-r from-gray-700 to-gray-900 text-white text-center py-6 text-sm">
+  © 2025 okamod.com All rights reserved.
+  <div class="mt-2 space-x-3">
+    <a href="#" class="hover:underline">Privacy Policy</a> 
+    <a href="#" class="hover:underline">Terms of Service</a> 
+    <a href="#" class="hover:underline">Contact Support</a> 
+    <a href="#" class="hover:underline">Uninstall Guide</a>
+  </div>
+</footer>
+
+<script>
+lucide.createIcons();
+
+// Game Data
+const gameData={
+  roblox:{img:"https://i.ibb.co/MDNMsqMd/3707a7cd7d384511c213b2a12dc3f0a7.jpg",downloads:1250000,votes:95000,size:173.80,version:"2.692.843",rating:4.5,description:"Experience endless adventures with Roblox Mods!",color:"red-500",link:"https://lockverify.org/cl/i/xpv439"},
+  minecraft:{img:"https://i.ibb.co/YrV8m0P/minecraft-s2kxfahyg30sob8q.jpg",downloads:980000,votes:87000,size:587.25,version:"1.21.120.25",rating:4.7,description:"Enhance your Minecraft world with new mods and features and paid Unlocked.",color:"green-600",link:"https://lockverify.org/cl/i/l7qeow"},
+  fortnite:{img:"https://i.ibb.co/XNTNCrq/social-image-chapter4-s3-3840x2160-d35912cc25ad.jpg",downloads:1500000,votes:123000,size:304.63,version:"37.40.0",rating:4.2,description:"Get exclusive Fortnite Mods for weapons, skins, and more!",color:"purple-600",link:"https://lockverify.org/cl/i/9vq63g"},
+  gta5:{img:"https://i.ibb.co/qFVc3JMC/2475-1920x1080-desktop-1080p-grand-theft-auto-5-background-image.jpg",downloads:800000,votes:71000,size:390.89,version:"9.4f",rating:4.4,description:"Unlock GTA V mods for cars, maps, and gameplay features.",color:"gray-700",link:"https://lockverify.org/cl/i/1onxg1"},
+  baseball9:{img:"https://i.ibb.co/fVH7TzYN/5-Tt-TMZa9-Ql-WRr-CZVFa704e91-W0j-Gj9l0-ZNo1rtk-Zn-ME.jpg",downloads:500000,votes:42000,size:245.09,version:"3.8.0",rating:4.3,description:"Play exciting Baseball9 mods with enhanced gameplay features!",color:"blue-500",link:"https://lockverify.org/cl/i/lk4x5d"}
+};
+
+// Render Game Cards
+const gameGrid=document.getElementById("gameGrid");
+for(const key in gameData){
+  const g=gameData[key];
+  const div=document.createElement("div");
+  div.className="cursor-pointer bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition flex flex-col fade-slide";
+  div.innerHTML=`
+    <img src="${g.img}" class="w-full h-48 sm:h-56 object-cover rounded-lg mb-2">
+    <div class="px-3 pb-3 flex-grow">
+      <div class="flex justify-between items-center mb-1">
+        <span class="font-bold text-gray-700">${key.charAt(0).toUpperCase()+key.slice(1)} Mod</span>
+        <span class="text-yellow-500">${'⭐'.repeat(Math.round(g.rating))}</span>
+      </div>
+      <p class="text-gray-600 text-xs sm:text-sm mb-1">${g.description}</p>
+      <div class="flex justify-between text-gray-600 text-xs font-semibold mb-2">
+        <div>💾 <span id="downloads-${key}">0</span></div>
+        <div>⭐ <span id="votes-${key}">0</span></div>
+        <div>${g.version}</div>
+      </div>
+      <button onclick="openPopup1('${key}')" class="mt-2 w-full py-2 bg-gradient-to-r from-${g.color} to-purple-600 text-white rounded-lg font-bold shadow hover:scale-105 transition text-xs sm:text-sm">
+        ⬇ Download Mod (${Math.floor(g.downloads/1000)}K) | ${g.size}MB
+      </button>
+    </div>
+  `;
+  gameGrid.appendChild(div);
+}
+
+// Fade animation
+window.addEventListener("load",()=>{document.querySelectorAll(".fade-slide").forEach((el,i)=>{setTimeout(()=>el.classList.add("show"),i*150);});});
+
+// Live stats animation
+for(const key in gameData){
+  let g=gameData[key], dEl=document.getElementById(`downloads-${key}`), vEl=document.getElementById(`votes-${key}`);
+  let dCount=0,vCount=0;
+  const steps=50;
+  const dStep=Math.ceil(g.downloads/steps),vStep=Math.ceil(g.votes/steps);
+  const interval=setInterval(()=>{
+    dCount+=dStep; vCount+=vStep;
+    if(dCount>g.downloads)dCount=g.downloads;
+    if(vCount>g.votes)vCount=g.votes;
+    dEl.textContent=Math.floor(dCount/1000)+"K";
+    vEl.textContent=Math.floor(vCount/1000)+"K";
+    if(dCount>=g.downloads && vCount>=g.votes) clearInterval(interval);
+  },50);
+}
+
+// Popups logic
+let downloadInterval=null, verificationInterval=null, manualCountdownInterval=null;
+let currentManualGameKey="";
+const popup1=document.getElementById("popup1"), popup2=document.getElementById("popup2"), popup3=document.getElementById("popup3"), popup4=document.getElementById("popup4"), popup5=document.getElementById("popup5");
+const progressBar=document.getElementById("progressBar"), fileInfo=document.getElementById("fileInfo"), downloadSpeed=document.getElementById("downloadSpeed");
+const verificationCircle=document.getElementById("verificationCircle"), verificationTime=document.getElementById("verificationTime");
+const manualCountdownEl=document.getElementById("manualCountdown"), manualGameStep=document.getElementById("manualGameStep");
+const manualDownloadBtn=document.getElementById("manualDownloadBtn"), iframeCountdown=document.getElementById("iframeCountdown");
+
+// Popup1: Download Simulation
+function openPopup1(gameKey){
+  currentManualGameKey = gameKey;
+  const g=gameData[gameKey]; popup1.classList.remove("hidden");
+  fileInfo.innerHTML=`${gameKey}.zip - ${g.size}MB - <span class="text-green-600">Available</span>`; progressBar.style.width="0%"; downloadSpeed.textContent="";
+  let totalSeconds=4,step=0,steps=totalSeconds*10,totalSize=g.size;
+  downloadInterval=setInterval(()=>{
+    step++; let percent=(step/steps)*100; progressBar.style.width=`${percent}%`;
+    let downloaded=((percent/100)*totalSize).toFixed(1), speed=(Math.random()*5+2).toFixed(2);
+    downloadSpeed.textContent=`Downloading: ${downloaded}MB / ${totalSize}MB @ ${speed}MB/s`;
+    if(step>=steps){ clearInterval(downloadInterval); popup1.classList.add("hidden"); popup2.classList.remove("hidden"); startVerification(gameKey); }
+  },100);
+}
+
+// Verification (Popup2)
+function startVerification(gameKey){
+  let totalSeconds=3, step=0, steps=totalSeconds*20;
+  let radius=45,circumference=2*Math.PI*radius;
+  verificationCircle.style.strokeDasharray=circumference; verificationCircle.style.strokeDashoffset=circumference;
+  verificationInterval=setInterval(()=>{
+    step++; let progress=step/steps;
+    verificationCircle.style.strokeDashoffset=circumference*(1-progress);
+    verificationTime.textContent=Math.ceil(totalSeconds*(1-progress));
+    if(step>=steps){ clearInterval(verificationInterval); popup2.classList.add("hidden"); popup3.classList.remove("hidden"); }
+  },50);
+}
+
+// Manual Verification Button (Popup3)
+document.getElementById("manualBtn").addEventListener("click", ()=>{
+  popup3.classList.add("hidden");
+  popup4.classList.remove("hidden");
+
+  const g = gameData[currentManualGameKey];
+  manualGameStep.textContent = `${currentManualGameKey.charAt(0).toUpperCase()+currentManualGameKey.slice(1)} Mod - Play ${currentManualGameKey.charAt(0).toUpperCase()+currentManualGameKey.slice(1)} with enhanced features and custom mods!`;
+
+  manualDownloadBtn.onclick = () => {
+    document.getElementById("manualIframe").src = g.link;
+    popup4.classList.add("hidden");
+    popup5.classList.remove("hidden");
+    iframeCountdown.textContent = manualCountdownEl.textContent;
+  };
+
+  startManualCountdown(currentManualGameKey);
+});
+
+// Manual Countdown
+function startManualCountdown(gameKey){
+  let totalSeconds=300;
+  function updateCountdown(){
+    let minutes=Math.floor(totalSeconds/60), seconds=totalSeconds%60;
+    manualCountdownEl.textContent=`${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+    iframeCountdown.textContent = manualCountdownEl.textContent;
+    if(totalSeconds<=0){ clearInterval(manualCountdownInterval); }
+    totalSeconds--;
+  }
+  clearInterval(manualCountdownInterval);
+  updateCountdown();
+  manualCountdownInterval=setInterval(updateCountdown,1000);
+}
+
+// Close iframe popup
+function closeIframePopup(){ popup5.classList.add("hidden"); popup4.classList.remove("hidden"); }
+
+// Close all popups
+function closeAllPopups(){ 
+  popup1.classList.add("hidden"); popup2.classList.add("hidden"); popup3.classList.add("hidden"); popup4.classList.add("hidden"); popup5.classList.add("hidden");
+  clearInterval(downloadInterval); clearInterval(verificationInterval); clearInterval(manualCountdownInterval);
+}
+
+// Review slider
+let currentSlide=0, slider=document.getElementById("reviewSlider"), slides=slider.children.length;
+function showSlide(i){ currentSlide=(i+slides)%slides; slider.style.transform=`translateX(-${currentSlide*100}%)`; }
+function nextReview(){ showSlide(currentSlide+1); }
+function prevReview(){ showSlide(currentSlide-1); }
+setInterval(nextReview,5000);
+
+// FAQ toggle
+document.querySelectorAll(".faq-question").forEach(button => {
+  button.addEventListener("click", () => {
+    const answer = button.nextElementSibling;
+    const toggleIcon = button.querySelector(".faq-toggle");
+    if(answer.classList.contains("hidden")){
+      answer.classList.remove("hidden");
+      toggleIcon.textContent = "−";
+    } else {
+      answer.classList.add("hidden");
+      toggleIcon.textContent = "+";
+    }
+  });
+});
+</script>
+</body>
+</html>
