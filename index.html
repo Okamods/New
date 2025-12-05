@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Game Mod Downloads</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
   #progressBar { transition: width 100ms linear; }
-  #verificationCircle { transition: stroke-dashoffset 50ms linear; }
   .fade-slide { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-slide.show { opacity: 1; transform: translateY(0); }
 </style>
@@ -113,44 +112,11 @@
   </div>
 </div>
 
-<!-- Popup2: Verification -->
-<div id="popup2" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
-  <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 text-center">
-    <button onclick="closeAllPopups()" class="mb-2 sm:mb-4 px-3 py-1 sm:px-4 sm:py-2 bg-red-600 text-white rounded-lg font-medium">✖ Close</button>
-    <h2 class="text-xl sm:text-2xl font-bold text-gray-900">Verification</h2>
-    <div class="mt-4 sm:mt-6 flex justify-center">
-      <svg class="w-24 h-24 sm:w-32 sm:h-32" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" stroke="#E5E7EB" stroke-width="10" fill="none"/>
-        <circle id="verificationCircle" cx="50" cy="50" r="45" stroke="#111827" stroke-width="10" fill="none" stroke-linecap="round" stroke-dasharray="282.743" stroke-dashoffset="282.743" transform="rotate(-90 50 50)"/>
-        <text id="verificationTime" x="50" y="55" text-anchor="middle" font-size="16" fill="#111827" font-weight="bold">3</text>
-      </svg>
-    </div>
-    <p class="mt-2 sm:mt-4 text-black font-medium">Verifying your device...</p>
-    <p class="mt-1 sm:mt-2 text-gray-600 text-xs sm:text-sm">Please wait while we check your device compatibility...</p>
-  </div>
-</div>
-
-<!-- Popup3: Verification Failed -->
-<div id="popup3" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
-  <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 text-center">
-    <button onclick="closeAllPopups()" class="mb-2 sm:mb-4 px-3 py-1 sm:px-4 sm:py-2 bg-red-600 text-white rounded-lg font-medium">✖ Close</button>
-    <h2 class="text-xl sm:text-2xl font-bold text-red-600">Verification Failed</h2>
-    <div class="mt-4 sm:mt-6 flex justify-center">
-      <i data-lucide="alert-circle" class="w-12 h-12 sm:w-16 sm:h-16 text-red-600"></i>
-    </div>
-    <p class="mt-2 sm:mt-4 text-gray-700 text-sm sm:text-base font-bold leading-snug">
-      Automatic verification failed.<br>
-      Please complete the manual verification to continue.
-    </p>
-    <button id="manualBtn" class="mt-4 sm:mt-6 px-4 sm:px-6 py-2 sm:py-3 bg-red-600 text-white rounded-xl font-semibold text-xs sm:text-sm">Complete Manual Verification</button>
-  </div>
-</div>
-
 <!-- Popup4: Manual Verification -->
 <div id="popup4" class="fixed inset-0 w-full h-full bg-black bg-opacity-50 hidden flex items-center justify-center z-50 px-4">
   <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-4 sm:p-6 text-center">
     <button onclick="closeAllPopups()" class="mb-2 sm:mb-4 px-3 py-1 sm:px-4 sm:py-2 bg-red-600 text-white rounded-lg font-medium">✖ Close</button>
-    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Manual Verification</h2>
+    <h2 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4"> ⚡QUICK & EASY </h2>
 
     <!-- Steps -->
     <div class="flex items-start mb-3">
@@ -216,32 +182,58 @@
 <script>
 lucide.createIcons();
 
-// Game Data
-const gameData={
-  roblox:{img:"https://i.ibb.co/MDNMsqMd/3707a7cd7d384511c213b2a12dc3f0a7.jpg",downloads:1250000,votes:95000,size:173.80,version:"2.692.843",rating:4.5,description:"Experience endless adventures with Roblox Mods!",color:"red-500",link:"https://lockverify.org/cl/i/xpv439"},
-  minecraft:{img:"https://i.ibb.co/YrV8m0P/minecraft-s2kxfahyg30sob8q.jpg",downloads:980000,votes:87000,size:587.25,version:"1.21.120.25",rating:4.7,description:"Enhance your Minecraft world with new mods and features and paid Unlocked.",color:"green-600",link:"https://lockverify.org/cl/i/l7qeow"},
-  fortnite:{img:"https://i.ibb.co/XNTNCrq/social-image-chapter4-s3-3840x2160-d35912cc25ad.jpg",downloads:1500000,votes:123000,size:304.63,version:"37.40.0",rating:4.2,description:"Get exclusive Fortnite Mods for weapons, skins, and more!",color:"purple-600",link:"https://lockverify.org/cl/i/9vq63g"},
-  gta5:{img:"https://i.ibb.co/qFVc3JMC/2475-1920x1080-desktop-1080p-grand-theft-auto-5-background-image.jpg",downloads:800000,votes:71000,size:390.89,version:"9.4f",rating:4.4,description:"Unlock GTA V mods for cars, maps, and gameplay features.",color:"gray-700",link:"https://lockverify.org/cl/i/1onxg1"},
-  baseball9:{img:"https://i.ibb.co/fVH7TzYN/5-Tt-TMZa9-Ql-WRr-CZVFa704e91-W0j-Gj9l0-ZNo1rtk-Zn-ME.jpg",downloads:500000,votes:42000,size:245.09,version:"3.8.0",rating:4.3,description:"Play exciting Baseball9 mods with enhanced gameplay features!",color:"blue-500",link:"https://lockverify.org/cl/i/lk4x5d"}
+// Helper: format title to Title Case
+function formatTitle(text) {
+  return String(text)
+    .split(" ")
+    .map(word => word ? word.charAt(0).toUpperCase() + word.slice(1) : "")
+    .join(" ");
+}
+
+// Helper: make a safe id from key (replace spaces with hyphens)
+function idFromKey(key) {
+  return String(key).trim().replace(/\s+/g, '-').toLowerCase();
+}
+
+// Game Data (added "red dead redemption" entry)
+const gameData = {
+
+ "red dead redemption": {
+    img: "https://i.ibb.co/qqpRMyW/FB-IMG-1764898940992.jpg",
+    downloads: 670000,
+    votes: 54000,
+    size: 6054.75,
+    version: "2.0.0",
+    rating: 4.8,
+    description: "Experience the legendary wild west adventure with Red Dead Redemption Mods!",
+    color: "red-700",
+    link: "https://installchecker.com/cl/i/d2vggo"
+  }, 
+  roblox: {img:"https://i.ibb.co/MDNMsqMd/3707a7cd7d384511c213b2a12dc3f0a7.jpg",downloads:1250000,votes:95000,size:173.80,version:"2.692.843",rating:4.5,description:"Experience endless adventures with Roblox Mods!",color:"red-500",link:"https://installchecker.com/cl/i/xpv439"},
+  minecraft: {img:"https://i.ibb.co/YrV8m0P/minecraft-s2kxfahyg30sob8q.jpg",downloads:980000,votes:87000,size:587.25,version:"1.21.120.25",rating:4.7,description:"Enhance your Minecraft world with new mods and features and paid Unlocked.",color:"green-600",link:"https://installchecker.com/cl/i/l7qeow"},
+  fortnite: {img:"https://i.ibb.co/XNTNCrq/social-image-chapter4-s3-3840x2160-d35912cc25ad.jpg",downloads:1500000,votes:123000,size:304.63,version:"37.40.0",rating:4.2,description:"Get exclusive Fortnite Mods for weapons, skins, and more!",color:"purple-600",link:"https://installchecker.com/cl/i/9vq63g"},
+  gta5: {img:"https://i.ibb.co/qFVc3JMC/2475-1920x1080-desktop-1080p-grand-theft-auto-5-background-image.jpg",downloads:800000,votes:71000,size:390.89,version:"9.4f",rating:4.4,description:"Unlock GTA V mods for cars, maps, and gameplay features.",color:"gray-700",link:"https://installchecker.com/cl/i/1onxg1"},
+  baseball9: {img:"https://i.ibb.co/fVH7TzYN/5-Tt-TMZa9-Ql-WRr-CZVFa704e91-W0j-Gj9l0-ZNo1rtk-Zn-ME.jpg",downloads:500000,votes:42000,size:245.09,version:"3.8.0",rating:4.3,description:"Play exciting Baseball9 mods with enhanced gameplay features!",color:"blue-500",link:"https://installchecker.com/cl/i/lk4x5d"}
 };
 
 // Render Game Cards
-const gameGrid=document.getElementById("gameGrid");
-for(const key in gameData){
-  const g=gameData[key];
-  const div=document.createElement("div");
-  div.className="cursor-pointer bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition flex flex-col fade-slide";
-  div.innerHTML=`
-    <img src="${g.img}" class="w-full h-48 sm:h-56 object-cover rounded-lg mb-2">
+const gameGrid = document.getElementById("gameGrid");
+for (const key in gameData) {
+  const g = gameData[key];
+  const idKey = idFromKey(key);
+  const div = document.createElement("div");
+  div.className = "cursor-pointer bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105 transition flex flex-col fade-slide";
+  div.innerHTML = `
+    <img src="${g.img}" class="w-full h-48 sm:h-56 object-cover rounded-lg mb-2" alt="${formatTitle(key)}">
     <div class="px-3 pb-3 flex-grow">
       <div class="flex justify-between items-center mb-1">
-        <span class="font-bold text-gray-700">${key.charAt(0).toUpperCase()+key.slice(1)} Mod</span>
+        <span class="font-bold text-gray-700">${formatTitle(key)} Mod</span>
         <span class="text-yellow-500">${'⭐'.repeat(Math.round(g.rating))}</span>
       </div>
       <p class="text-gray-600 text-xs sm:text-sm mb-1">${g.description}</p>
       <div class="flex justify-between text-gray-600 text-xs font-semibold mb-2">
-        <div>💾 <span id="downloads-${key}">0</span></div>
-        <div>⭐ <span id="votes-${key}">0</span></div>
+        <div>💾 <span id="downloads-${idKey}">0</span></div>
+        <div>⭐ <span id="votes-${idKey}">0</span></div>
         <div>${g.version}</div>
       </div>
       <button onclick="openPopup1('${key}')" class="mt-2 w-full py-2 bg-gradient-to-r from-${g.color} to-purple-600 text-white rounded-lg font-bold shadow hover:scale-105 transition text-xs sm:text-sm">
@@ -253,115 +245,112 @@ for(const key in gameData){
 }
 
 // Fade animation
-window.addEventListener("load",()=>{document.querySelectorAll(".fade-slide").forEach((el,i)=>{setTimeout(()=>el.classList.add("show"),i*150);});});
+window.addEventListener("load", () => {
+  document.querySelectorAll(".fade-slide").forEach((el, i) => { setTimeout(() => el.classList.add("show"), i * 150); });
+});
 
-// Live stats animation
-for(const key in gameData){
-  let g=gameData[key], dEl=document.getElementById(`downloads-${key}`), vEl=document.getElementById(`votes-${key}`);
-  let dCount=0,vCount=0;
-  const steps=50;
-  const dStep=Math.ceil(g.downloads/steps),vStep=Math.ceil(g.votes/steps);
-  const interval=setInterval(()=>{
-    dCount+=dStep; vCount+=vStep;
-    if(dCount>g.downloads)dCount=g.downloads;
-    if(vCount>g.votes)vCount=g.votes;
-    dEl.textContent=Math.floor(dCount/1000)+"K";
-    vEl.textContent=Math.floor(vCount/1000)+"K";
-    if(dCount>=g.downloads && vCount>=g.votes) clearInterval(interval);
-  },50);
+// Live stats animation (after render)
+for (const key in gameData) {
+  const g = gameData[key];
+  const idKey = idFromKey(key);
+  const dEl = document.getElementById(`downloads-${idKey}`);
+  const vEl = document.getElementById(`votes-${idKey}`);
+  if (!dEl || !vEl) continue;
+
+  let dCount = 0, vCount = 0;
+  const steps = 50;
+  const dStep = Math.ceil(g.downloads / steps), vStep = Math.ceil(g.votes / steps);
+  const interval = setInterval(() => {
+    dCount += dStep; vCount += vStep;
+    if (dCount > g.downloads) dCount = g.downloads;
+    if (vCount > g.votes) vCount = g.votes;
+    dEl.textContent = Math.floor(dCount / 1000) + "K";
+    vEl.textContent = Math.floor(vCount / 1000) + "K";
+    if (dCount >= g.downloads && vCount >= g.votes) clearInterval(interval);
+  }, 50);
 }
 
 // Popups logic
-let downloadInterval=null, verificationInterval=null, manualCountdownInterval=null;
-let currentManualGameKey="";
-const popup1=document.getElementById("popup1"), popup2=document.getElementById("popup2"), popup3=document.getElementById("popup3"), popup4=document.getElementById("popup4"), popup5=document.getElementById("popup5");
-const progressBar=document.getElementById("progressBar"), fileInfo=document.getElementById("fileInfo"), downloadSpeed=document.getElementById("downloadSpeed");
-const verificationCircle=document.getElementById("verificationCircle"), verificationTime=document.getElementById("verificationTime");
-const manualCountdownEl=document.getElementById("manualCountdown"), manualGameStep=document.getElementById("manualGameStep");
-const manualDownloadBtn=document.getElementById("manualDownloadBtn"), iframeCountdown=document.getElementById("iframeCountdown");
+let downloadInterval = null, manualCountdownInterval = null;
+let currentManualGameKey = "";
+const popup1 = document.getElementById("popup1"), popup4 = document.getElementById("popup4"), popup5 = document.getElementById("popup5");
+const progressBar = document.getElementById("progressBar"), fileInfo = document.getElementById("fileInfo"), downloadSpeed = document.getElementById("downloadSpeed");
+const manualCountdownEl = document.getElementById("manualCountdown"), manualGameStep = document.getElementById("manualGameStep");
+const manualDownloadBtn = document.getElementById("manualDownloadBtn"), iframeCountdown = document.getElementById("iframeCountdown");
 
 // Popup1: Download Simulation
-function openPopup1(gameKey){
+function openPopup1(gameKey) {
   currentManualGameKey = gameKey;
-  const g=gameData[gameKey]; popup1.classList.remove("hidden");
-  fileInfo.innerHTML=`${gameKey}.zip - ${g.size}MB - <span class="text-green-600">Available</span>`; progressBar.style.width="0%"; downloadSpeed.textContent="";
-  let totalSeconds=4,step=0,steps=totalSeconds*10,totalSize=g.size;
-  downloadInterval=setInterval(()=>{
-    step++; let percent=(step/steps)*100; progressBar.style.width=`${percent}%`;
-    let downloaded=((percent/100)*totalSize).toFixed(1), speed=(Math.random()*5+2).toFixed(2);
-    downloadSpeed.textContent=`Downloading: ${downloaded}MB / ${totalSize}MB @ ${speed}MB/s`;
-    if(step>=steps){ clearInterval(downloadInterval); popup1.classList.add("hidden"); popup2.classList.remove("hidden"); startVerification(gameKey); }
-  },100);
+  const g = gameData[gameKey];
+  popup1.classList.remove("hidden");
+  fileInfo.innerHTML = `${idFromKey(gameKey)}.zip - ${g.size}MB - <span class="text-green-600">Available</span>`;
+  progressBar.style.width = "0%"; downloadSpeed.textContent = "";
+  let totalSeconds = 4, step = 0, steps = totalSeconds * 10, totalSize = g.size;
+  clearInterval(downloadInterval);
+  downloadInterval = setInterval(() => {
+    step++; let percent = (step / steps) * 100; progressBar.style.width = `${percent}%`;
+    let downloaded = ((percent / 100) * totalSize).toFixed(1), speed = (Math.random() * 5 + 2).toFixed(2);
+    downloadSpeed.textContent = `Downloading: ${downloaded}MB / ${totalSize}MB @ ${speed}MB/s`;
+    if (step >= steps) { 
+      clearInterval(downloadInterval); 
+      popup1.classList.add("hidden"); 
+
+      // popup4 (popup4)
+      popup4.classList.remove("hidden");
+
+      const formattedTitle = formatTitle(currentManualGameKey);
+      manualGameStep.textContent = `${formattedTitle} Mod - Play  with enhanced features and custom mods!`;
+
+      manualDownloadBtn.onclick = () => {
+        // set iframe to the link and open popup5
+        document.getElementById("manualIframe").src = g.link;
+        popup4.classList.add("hidden");
+        popup5.classList.remove("hidden");
+        iframeCountdown.textContent = manualCountdownEl.textContent;
+      };
+
+      startManualCountdown();
+    }
+  }, 100);
 }
-
-// Verification (Popup2)
-function startVerification(gameKey){
-  let totalSeconds=3, step=0, steps=totalSeconds*20;
-  let radius=45,circumference=2*Math.PI*radius;
-  verificationCircle.style.strokeDasharray=circumference; verificationCircle.style.strokeDashoffset=circumference;
-  verificationInterval=setInterval(()=>{
-    step++; let progress=step/steps;
-    verificationCircle.style.strokeDashoffset=circumference*(1-progress);
-    verificationTime.textContent=Math.ceil(totalSeconds*(1-progress));
-    if(step>=steps){ clearInterval(verificationInterval); popup2.classList.add("hidden"); popup3.classList.remove("hidden"); }
-  },50);
-}
-
-// Manual Verification Button (Popup3)
-document.getElementById("manualBtn").addEventListener("click", ()=>{
-  popup3.classList.add("hidden");
-  popup4.classList.remove("hidden");
-
-  const g = gameData[currentManualGameKey];
-  manualGameStep.textContent = `${currentManualGameKey.charAt(0).toUpperCase()+currentManualGameKey.slice(1)} Mod - Play ${currentManualGameKey.charAt(0).toUpperCase()+currentManualGameKey.slice(1)} with enhanced features and custom mods!`;
-
-  manualDownloadBtn.onclick = () => {
-    document.getElementById("manualIframe").src = g.link;
-    popup4.classList.add("hidden");
-    popup5.classList.remove("hidden");
-    iframeCountdown.textContent = manualCountdownEl.textContent;
-  };
-
-  startManualCountdown(currentManualGameKey);
-});
 
 // Manual Countdown
-function startManualCountdown(gameKey){
-  let totalSeconds=300;
-  function updateCountdown(){
-    let minutes=Math.floor(totalSeconds/60), seconds=totalSeconds%60;
-    manualCountdownEl.textContent=`${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+function startManualCountdown() {
+  let totalSeconds = 300;
+  function updateCountdown() {
+    let minutes = Math.floor(totalSeconds / 60), seconds = totalSeconds % 60;
+    manualCountdownEl.textContent = `${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
     iframeCountdown.textContent = manualCountdownEl.textContent;
-    if(totalSeconds<=0){ clearInterval(manualCountdownInterval); }
+    if (totalSeconds <= 0) { clearInterval(manualCountdownInterval); }
     totalSeconds--;
   }
   clearInterval(manualCountdownInterval);
   updateCountdown();
-  manualCountdownInterval=setInterval(updateCountdown,1000);
+  manualCountdownInterval = setInterval(updateCountdown, 1000);
 }
 
 // Close iframe popup
-function closeIframePopup(){ popup5.classList.add("hidden"); popup4.classList.remove("hidden"); }
+function closeIframePopup() { popup5.classList.add("hidden"); popup4.classList.remove("hidden"); }
 
 // Close all popups
-function closeAllPopups(){ 
-  popup1.classList.add("hidden"); popup2.classList.add("hidden"); popup3.classList.add("hidden"); popup4.classList.add("hidden"); popup5.classList.add("hidden");
-  clearInterval(downloadInterval); clearInterval(verificationInterval); clearInterval(manualCountdownInterval);
+function closeAllPopups() {
+  popup1.classList.add("hidden"); popup4.classList.add("hidden"); popup5.classList.add("hidden");
+  clearInterval(downloadInterval); clearInterval(manualCountdownInterval);
 }
 
 // Review slider
-let currentSlide=0, slider=document.getElementById("reviewSlider"), slides=slider.children.length;
-function showSlide(i){ currentSlide=(i+slides)%slides; slider.style.transform=`translateX(-${currentSlide*100}%)`; }
-function nextReview(){ showSlide(currentSlide+1); }
-function prevReview(){ showSlide(currentSlide-1); }
-setInterval(nextReview,5000);
+let currentSlide = 0, slider = document.getElementById("reviewSlider"), slides = slider.children.length;
+function showSlide(i) { currentSlide = (i + slides) % slides; slider.style.transform = `translateX(-${currentSlide * 100}%)`; }
+function nextReview() { showSlide(currentSlide + 1); }
+function prevReview() { showSlide(currentSlide - 1); }
+setInterval(nextReview, 5000);
 
 // FAQ toggle
 document.querySelectorAll(".faq-question").forEach(button => {
   button.addEventListener("click", () => {
     const answer = button.nextElementSibling;
     const toggleIcon = button.querySelector(".faq-toggle");
-    if(answer.classList.contains("hidden")){
+    if (answer.classList.contains("hidden")) {
       answer.classList.remove("hidden");
       toggleIcon.textContent = "−";
     } else {
